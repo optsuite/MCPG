@@ -1,0 +1,9 @@
+problem type: "maxcut"
+sample_epoch_num: 8
+total_mcmc_num: 120
+repeat_times: 130
+num_epochs: 60
+num_ls: 1
+learning_rate: 0.25
+regular: 0
+loss: "loss"

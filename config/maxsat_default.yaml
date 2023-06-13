@@ -1,0 +1,9 @@
+problem type: "maxsat"
+sample_epoch_num: 8
+total_mcmc_num: 400
+repeat_times: 120
+num_epochs: 50
+num_ls: 10
+learning_rate: 0.25
+regular: 0
+loss: "loss"
