@@ -117,7 +117,3 @@ We hope that the package is useful for your application. If you have any bug rep
 
 ## License
 GNU General Public License v3.0
-
-
-
-## License
