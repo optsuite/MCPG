@@ -125,7 +125,7 @@ For solving the partial maxsat problem using MCPG, run the following code
 ```python
 python mcpg.py config/pmaxsat_default.yaml data/sat/randu_1.cnf
 ```
-|Problem | | | MCPG| | MCPG-U | | WBO/inc | | SATLike | |
+|Problem | | | MCPG| | WBO | | WBO-inc | | SATLike | |
 |-|-|-|-|-|-|-|-|-|-|-|
 |nvar| nclause | UB | gap | time | gap | time | gap  | time| gap | time  | gap | time
 |2000 | 10000 | 8972  |  0.01 | 39  |  6.88  | 60       | 5.49 | 60| 0.12 | 60 
