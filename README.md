@@ -28,7 +28,7 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
 
 ## Examples
 
-### maxcut
+### MaxCut
 The MaxCut problem aims to divide a given weighted graph $G = (V,E)$ into two parts and maximize the total weight of the edges connecting two parts. This problem can be expressed as a binary programming problem:
 $$\max  \quad  \sum_{(i,j) \in E} w_{ij} (1-x_i x_j), \quad \mathrm{s.t.}\quad  x\in \\{-1, 1\\}^n.$$
 
@@ -37,6 +37,17 @@ For solving maxcut problem using MCPG, run the following code
 ```
 python mcpg.py config/maxcut_default.yaml data/graph/G14.txt
 ```
+
+The following table shows the selected results for MaxCut on Gset datasets.
+| Graph | Nodes   | Edges   | MCPG   | BLS    | DSDP   | RUN-CSP | PI-GNN | EO     | EMADM  |
+|-------|---------|---------|--------|--------|--------|---------|--------|--------|--------|
+| G14   | 800     | 4,694   | 3,064  | 3,064  | 2,922  | 2,943   | 3,026  | 3047   | 3045   |
+| G15   | 800     | 4,661   | 3,050  | 3,050  | 2,938  | 2,928   | 2,990  | 3028   | 3034   |
+| G22   | 2,000   | 19,990  | 13,359 | 13,359 | 12,960 | 13,028  | 13,181 | 13215  | 13297  |
+| G49   | 3,000   | 6,000   | 6,000  | 6,000  | 6,000  | 6,000   | 5,918  | 6000   | 6000   |
+| G50   | 3,000   | 6,000   | 5,880  | 5,880  | 5,880  | 5,880   | 5,820  | 5878   | 5870   |
+| G55   | 5,000   | 12,468  | 10,296 | 10,294 | 9,960  | 10,116  | 10,138 | 10107  | 10208  |
+| G70   | 10,000  | 9,999   | 9595   | 9,541  | 9,456  | -       | 9,421  | 8513   | 9557   |
 
 ### Quadratic Unconstrained Binary Optimization
 QUBO is to solve the following problem:
@@ -47,6 +58,17 @@ For solving QUBO problem using MCPG, run the following code
 ```python
 python mcpg.py config/qubo_default.yaml data/nbiq/nbiq_5000_1.npy
 ```
+The following table shows the selected results for MaxCut on generated NBIQ datasets.
+
+| Problem      | MCPG | | MCPG-U| | MCPG-P | | EMADM | |
+|--------------|-------------------------|-------------------------|-------|-------|-------|------|------|------|
+| Name         | gap                     | time                    | gap                  | time | gap   | time | gap  | time |
+| nbiq.5000.1                      | 0.42 | 364                                     | 0.45  | 361   |0.63  | 364  | 1.33 | 356  |
+| nbiq.5000.2                      | 0.50 | 368                                      | 0.52  | 364   |1.08  | 365  | 1.45 | 361  |
+| nbiq.5000.3                      | 0.56 | 370                                     | 0.68  | 369  | 0.97  | 378  | 1.23 | 357  |
+| nbiq.7000.1                      | 0.39 | 513                                      | 0.43  | 510  | 0.60  | 512  | 1.38 | 1132 |
+| nbiq.7000.2                      | 0.44 | 509                                      | 0.50  | 507  | 0.75  | 510  | 1.27 | 1147 |
+| nbiq.7000.3                    | 0.61 | 515                                      | 0.90  | 510  | 1.24  | 512  | 1.47 | 1139 |
 
 ### Cheeger Cut
 Cheeger cut is a kind of balanced graph cut, which are widely used in classification tasks and clustering. Given a graph $G = (V, E, w)$, the ratio Cheeger cut (RCC) and the normal Cheeger cut (NCC) are defined as
@@ -74,6 +96,17 @@ For solving the MIMO problem using MCPG, run the following code
 ```python
 python mcpg.py config/mimo_default.yaml data/mimo/~.mat
 ```
+| Type   | LB        | MCPG                |       | HOTML               |       | MMSE                |       |
+|--------|-----------|---------------------|-------|---------------------|-------|---------------------|-------|
+|        | BER       | BER                 | time  | BER                 | time  | BER                 | time  |
+| 800-2  | 0.103731  | 0.174669  | 0.50  | 0.192981            | 10.63 | 0.177175            | 0.10  |
+| 800-4  | 0.056331  | 0.126675   | 1.00  | 0.146444            | 11.88 | 0.140519            | 0.10  |
+| 800-6  | 0.023131  | 0.069094   | 3.96  | 0.082063            | 13.47 | 0.105463            | 0.10  |
+| 800-8  | 0.006300  | 0.012150   | 3.29  | 0.012188            | 6.22  | 0.074900            | 0.10  |
+| 1200-2 | 0.104883  | 0.174588  | 1.00  | 0.193192            | 82.46 | 0.177675            | 0.45  |
+| 1200-4 | 0.056400  | 0.127004   | 1.94  | 0.145813            | 77.83 | 0.140567            | 0.47  |
+| 1200-6 | 0.023179  |0.070346   | 6.47  | 0.083738            | 73.94 | 0.105979            | 0.47  |
+| 1200-8 | 0.006179  | 0.012529   | 7.39  | 0.012654            | 61.59 | 0.075567            | 0.47  |
 
 ### MaxSAT
 The MaxSAT problem is to find an assignment of the variables that satisfies the maximum number of clauses in a boolean formula in conjunctive normal form (CNF). Given a formula in CNF consists of clause $c^1,c^2,\cdots,c^m$, we formulate the partial MaxSAT problem as a penalized binary programming problem:
@@ -92,7 +125,14 @@ For solving the partial maxsat problem using MCPG, run the following code
 ```python
 python mcpg.py config/pmaxsat_default.yaml data/sat/randu_1.cnf
 ```
-
+|Problem | | | MCPG| | MCPG-U | | WBO/inc | | SATLike | |
+|-|-|-|-|-|-|-|-|-|-|-|
+|nvar| nclause | UB | gap | time | gap | time | gap  | time| gap | time  | gap | time
+|2000 | 10000 | 8972  |  0.01 | 39  |  6.88  | 60       | 5.49 | 60| 0.12 | 60 
+|2000 | 10000 | 8945  |  0.01 | 39  |  6.47  | 60       | 5.62 | 60| 0.15 | 60 
+|2000 | 10000 | 8969  |  0.01 | 39  |  7.08  | 60       | 5.74 | 60| 0.12 | 60 
+|2000 | 10000 | 8950  |  0.01 | 38  |  6.74  | 60       | 5.89 | 60| 0.13 | 60 
+|2000 | 10000 | 8937  |  0.01 | 39  |  6.22  | 60       | 5.99 | 60| 0.12 | 60 
 ## Summary of Datasets 
 
 We list the downloading links to the datasets used in the papers for reproduction.
