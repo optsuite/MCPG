@@ -21,16 +21,16 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
 
 ## Code Structure
 ```
-    ├── Config         : Configuration files for various types of problems. 
+    ├── config         : Configuration files for various types of problems. 
     |                    See Examples for more details to use the configuration files.
-    ├── Data           : Problem instances selected for testing.
+    ├── data           : Problem instances selected for testing.
     |                    See Summary of Datasets to access the complete datasets presented
     |                    in the paper.
-    └── PyTorch
-          ├── mcpg.py      : Our MCPG solver. 
-          ├── model.py     : The probabilistic model to output the mean-field distribution.
-          ├── dataloader.py: Data loader for MCPG to input the problem instance.
-          └── sampling.py  : The sampling procedure combining with the local search algorithm in MCPG.
+    └── src
+        ├── mcpg.py      : Our MCPG solver. 
+        ├── model.py     : The probabilistic model to output the mean-field distribution.
+        ├── dataloader.py: Data loader for MCPG to input the problem instance.
+        └── sampling.py  : The sampling procedure combining with the local search algorithm in MCPG.
 ```
 
 ## Examples
