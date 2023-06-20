@@ -154,7 +154,7 @@ python src/mcpg.py config/maxsat_default.yaml data/sat/randu_1.cnf
 ```
 For solving the partial maxsat problem using MCPG, run the following code
 ```python
-python src/mcpg.py config/pmaxsat_default.yaml data/sat/randu_1.cnf
+python src/mcpg.py config/pmaxsat_default.yaml data/partial_sat/randu_1.wcnf
 ```
 
 The following table shows the selected results for MaxSAT without hard clauses on the generated difficult dataset.
