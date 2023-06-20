@@ -95,7 +95,7 @@ For solving the Cheeger cut problem using MCPG, run the following code
 python mcpg.py config/rcheegercut_default.yaml data/graph/G14.txt
 python mcpg.py config/ncheegercut_default.yaml data/graph/G14.txt
 ```
-The following table shows the selected results for normal Cheeger cut on generated NBIQ datasets.
+The following table shows the selected results for normal Cheeger cut on Gset dataset.
 Problem | MCPG| | MCPG-U | | MCPG-P | | pSC | |
 |-|-|-|-|-|-|-|-|-|
 Name    | NCC | time | NCC |time | NCC| time | NCC   | time     
@@ -139,8 +139,6 @@ where $w_i = 1$ for $c^i \in C_1$ and $w_i = |C_1| + 1$ for $c^i \in C_2$. $C_1$
 
 $c_j^i$ represents the sign of literal $j$ in clause $i$. $c_j^i = 1$ when $x_j$ appears in the clause $C_i$, $c_j^i = -1$ when $\neg x_j$ appears in the clause $C_i$ and  otherwise $c_j^i = 0$.
 
-The constraints in the partial MaxSAT problem can be converted to an exact penalty in the objective function, which is demonstrated in \eqref{eq:penaltyfun}. Since the left side of the equality constraints in \eqref{eq:maxsat} is no more than 1, the absolute function of the penalty can be dropped. Therefore, we have the following binary programming problem:
-
 For solving the maxsat problem using MCPG, run the following code
 ```python
 python mcpg.py config/maxsat_default.yaml data/sat/randu_1.cnf
@@ -149,14 +147,31 @@ For solving the partial maxsat problem using MCPG, run the following code
 ```python
 python mcpg.py config/pmaxsat_default.yaml data/sat/randu_1.cnf
 ```
-|Problem | | | MCPG| | WBO | | WBO-inc | | SATLike | |
-|-|-|-|-|-|-|-|-|-|-|-|
+
+The following table shows the selected results for MaxSAT without hard clauses on generated difficult dataset.
+|Problem | | | MCPG | WBO | WBO-inc | | SATLike | |
+|-|-|-|-|-|-|-|-|-|
 |nvar| nclause | UB | gap | time | gap | time | gap  | time| gap | time  | gap | time
 |2000 | 10000 | 8972  |  0.01 | 39  |  6.88  | 60       | 5.49 | 60| 0.12 | 60 
 |2000 | 10000 | 8945  |  0.01 | 39  |  6.47  | 60       | 5.62 | 60| 0.15 | 60 
 |2000 | 10000 | 8969  |  0.01 | 39  |  7.08  | 60       | 5.74 | 60| 0.12 | 60 
 |2000 | 10000 | 8950  |  0.01 | 38  |  6.74  | 60       | 5.89 | 60| 0.13 | 60 
 |2000 | 10000 | 8937  |  0.01 | 39  |  6.22  | 60       | 5.99 | 60| 0.12 | 60 
+
+The following table shows the selected results for partial MaxSAT on MSE2016 random track.
+|Problem | | | | MCPG | | WBO| WBO-inc| SATLike | |
+|-|-|-|-|-|-|-|-|-|-|
+name | C_2 | C_1|  UB | gap  | time | gap | gap | gap | time  
+min2sat-800-1   | 4013 | 401 | 340 | 0.00 |  27 | 24.41 | 2.35 | 1.47          | 60  
+min2sat-800-2   | 3983 | 401 | 352 | 0.00 |  27 | 24.43 | 0.85 | 0.85          | 60 
+min2sat-800-3   | 3956 | 400 | 340 | 0.00 |  27 | 22.35 | 1.76 | 0.59          | 60 
+min2sat-800-4   | 3933 | 398 | 349 | 0.00 |  27 | 26.36 | 2.58 | 1.72          | 60 
+min2sat-800-5   | 3871 | 402 | 353 | 0.00 |  27 | 20.11 | 1.70 | 0.28 | 60 
+min2sat-1040-1  | 4248 | 525 | 458 | 0.00 |  32 | 21.62 | 2.40 | 0.22          | 60 
+min2sat-1040-2  | 4158 | 528 | 473 | 0.00 |  33 | 22.83 | 1.27 | 0.21          | 60 
+min2sat-1040-3  | 4194 | 527 | 473 | 0.00 |  33 | 17.12 | 0.21 | 0.42          | 60 
+min2sat-1040-4  | 4079 | 520 | 474 | 0.00 |  33 | 18.57 | 1.69 | 0.21          | 60 
+min2sat-1040-5  | 4184 | 523 | 465 | 0.43 |  33 | 17.42 | 1.29 | 0.00 | 60 
 ## Summary of Datasets 
 
 We list the downloading links to the datasets used in the papers for reproduction.
