@@ -22,9 +22,9 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
 ## Code Structure
 ```
     ├── Config         : Configuration files for various types of problems. 
-    |                    See Example for more details to use the configuration files.
+    |                    See Examples for more details to use the configuration files.
     ├── Data           : Problem instance selected for testing.
-    |                    See Summary of Datasets to access the full datasets presented
+    |                    See Summary of Datasets to access the complete datasets presented
     |                    in the paper.
     └── PyTorch
           ├── mcpg.py      : Our MCPG solver. 
@@ -45,7 +45,7 @@ For solving maxcut problem using MCPG, run the following code
 python src/mcpg.py config/maxcut_default.yaml data/graph/G14.txt
 ```
 
-The following table shows the selected results for MaxCut on Gset datasets.
+The following table shows the selected results for MaxCut on Gset datasets regardless of time limits.
 | Graph | Nodes   | Edges   | MCPG   | BLS    | DSDP   | RUN-CSP | PI-GNN | EO     | EMADM  |
 |-------|---------|---------|--------|--------|--------|---------|--------|--------|--------|
 | G14   | 800     | 4,694   | 3,064  | 3,064  | 2,922  | 2,943   | 3,026  | 3047   | 3045   |
