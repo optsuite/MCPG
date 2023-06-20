@@ -79,6 +79,21 @@ For solving QUBO problem using MCPG, run the following code
 ```python
 python src/mcpg.py config/qubo_default.yaml data/nbiq/nbiq_5000_1.npy
 ```
+The following table shows the results for QUBO on the large instances of Biq Mac Library.
+| Problem     || MCPG | | MCPG-U| | MCPG-P | | EMADM | |
+|-|-|-|-|-|-|-|-|-|-|
+|Name|UB|gap|time|gap|time|gap|time|gap|time|
+b2500.1|1515944|0.00000|23|0.00000|26|0.00482|43|0.00000|27
+b2500.2|1471392|0.01183|57|0.01604|71|0.02827|79|0.01883|29
+b2500.3|1414192|0.00106|42|0.00198|38|0.00438|38|0.01782|33
+b2500.4|1507701|0.00000|21|0.00000|22|0.00000|32|0.00000|29
+b2500.5|1491816|0.00000|30|0.00000|28|0.00684|49|0.01629|28
+b2500.6|1469162|0.00000|32|0.00000|37|0.00776|52|0.00000|29
+b2500.7|1479040|0.00000|38|0.00000|33|0.01643|55|0.02833|32
+b2500.8|1484199|0.00000|27|0.00000|28|0.01159|59|0.01536|31
+b2500.9|1482413|0.00000|31|0.00000|30|0.00492|53|0.00169|27
+b2500.10|1483355|0.01079|53|0.01220|52|0.01692|72|0.02986|27
+
 The following table shows the selected results for QUBO on the generated NBIQ datasets.
 
 | Problem      | MCPG | | MCPG-U| | MCPG-P | | EMADM | |
