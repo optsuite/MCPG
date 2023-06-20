@@ -49,6 +49,18 @@ The following table shows the selected results for MaxCut on Gset datasets.
 | G55   | 5,000   | 12,468  | 10,296 | 10,294 | 9,960  | 10,116  | 10,138 | 10107  | 10208  |
 | G70   | 10,000  | 9,999   | 9595   | 9,541  | 9,456  | -       | 9,421  | 8513   | 9557   |
 
+The following table shows the detailed results for selected graph of Gset within limited time.
+|Problem| | MCPG| | MCPG-U | | EO | | EMADM | |
+|-|-|-|-|-|-|-|-|-|-|
+|name| UB     | gap | time     | gap| time    | gap   | time | gap| time   
+|G22 | 13359  |  0.01 |  55    | 0.01    |  51  |  1.21 | 116 | 0.42   | 66
+|	G23 | 13344  |  0.02 |  56    | 0.07    |  51  | 0.95 | 116 | 0.39   | 66
+|	G24 | 13337  |  0.03 |  56    | 0.04    |  51  | 0.97 | 116 | 0.32   | 60
+|	G25 | 13340  |  0.07 |  55    | 0.08    |  51  | 0.95 | 115 | 0.45   | 66
+|	G26 | 13328  |  0.08 |  55    | 0.10    |  50  | 0.92 | 115 | 0.36   | 66
+|	G41 | 2405   |  0.00 |  54    | 0.08    |  50  | 4.46 | 106 | 1.93   | 84
+|	G42 | 2481   |  0.00 |  54    | 0.28    |  50  | 4.21 | 106 | 2.70   | 84
+|	G43 | 6660   |  0.00 |  28    | 0.00    |  26  | 0.96 | 45  | 0.32   | 24
 ### Quadratic Unconstrained Binary Optimization
 QUBO is to solve the following problem:
 $$\max \quad  x^\mathrm{T} Q x,\quad\mathrm{s.t.}\quad x\in \\{0, 1\\}^n.$$
@@ -83,7 +95,19 @@ For solving the Cheeger cut problem using MCPG, run the following code
 python mcpg.py config/rcheegercut_default.yaml data/graph/G14.txt
 python mcpg.py config/ncheegercut_default.yaml data/graph/G14.txt
 ```
-
+The following table shows the selected results for normal Cheeger cut on generated NBIQ datasets.
+Problem | MCPG| | MCPG-U | | MCPG-P | | pSC | |
+|-|-|-|-|-|-|-|-|-|
+Name    | NCC | time | NCC |time | NCC| time | NCC   | time     
+G22|0.280|43|0.283|39|0.284|41|0.375|136 
+G23|0.296|44|0.305|46|0.309|42|0.373|137 
+G24|0.366|41|0.368|40|0.375|44|0.449|132 
+G25|0.258|41|0.259|43|0.286|44|0.388|134 
+G26|0.272|42|0.281|42|0.284|40|0.416|134 
+G43|0.327|28|0.337|23|0.333|23|0.427|71 
+G44|0.308|28|0.312|27|0.353|26|0.421|67 
+G45|0.361|30|0.372|28|0.364|24|0.447|70 
+G46|0.297|25|0.311|25|0.337|27|0.378|68 
 ### MIMO
 The MIMO problem is to recover $x_C \in \mathcal Q$ from the linear model
 $$y_C = H_Cx_C+\nu_C,$$
