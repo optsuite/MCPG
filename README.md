@@ -34,7 +34,9 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
 ```
 
 ## Examples
-
+We briefly introduce the problems we test in our paper, and presents the results individually for all the test problems. The gap are defined as 
+$$\mathrm{gap} = \frac{\mathrm{obj}}{\mathrm{UB}} \times 100 \\%$$
+where $\mathrm{obj}$ is the objective value achieved by MCPG and other comparison algorithms, and $\mathrm{UB}$ denotes the best-known results.
 ### MaxCut
 The MaxCut problem aims to divide a given weighted graph $G = (V,E)$ into two parts and maximize the total weight of the edges connecting two parts. This problem can be expressed as a binary programming problem:
 $$\max  \quad  \sum_{(i,j) \in E} w_{ij} (1-x_i x_j), \quad \mathrm{s.t.}\quad  x\in \\{-1, 1\\}^n.$$
