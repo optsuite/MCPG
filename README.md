@@ -20,11 +20,18 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
 
 
 ## Code Structure
-
-- mcpg.py: Our MCPG solver.
-- model.py: The probabilistic model to output the mean-field distribution.
-- dataloader.py: Data loader for MCPG to input the problem instance.
-- sampling.py: The sampling procedure combining with the local search algorithm in MCPG.
+```
+    ├── Config         : Configuration files for various types of problems. 
+    |                    See Example for more details to use the configuration files.
+    ├── Data           : Problem instance selected for testing.
+    |                    See Summary of Datasets to access the full datasets presented
+    |                    in the paper.
+    └── PyTorch
+          ├── mcpg.py      : Our MCPG solver. 
+          ├── model.py     : The probabilistic model to output the mean-field distribution.
+          ├── dataloader.py: Data loader for MCPG to input the problem instance.
+          └── sampling.py  : The sampling procedure combining with the local search algorithm in MCPG.
+```
 
 ## Examples
 
@@ -35,7 +42,7 @@ $$\max  \quad  \sum_{(i,j) \in E} w_{ij} (1-x_i x_j), \quad \mathrm{s.t.}\quad  
 For solving maxcut problem using MCPG, run the following code
 
 ```
-python mcpg.py config/maxcut_default.yaml data/graph/G14.txt
+python src/mcpg.py config/maxcut_default.yaml data/graph/G14.txt
 ```
 
 The following table shows the selected results for MaxCut on Gset datasets.
@@ -68,9 +75,9 @@ The sparsity of $Q$ in our experiments is greater than $0.5$, which fundamentall
 
 For solving QUBO problem using MCPG, run the following code
 ```python
-python mcpg.py config/qubo_default.yaml data/nbiq/nbiq_5000_1.npy
+python src/mcpg.py config/qubo_default.yaml data/nbiq/nbiq_5000_1.npy
 ```
-The following table shows the selected results for MaxCut on generated NBIQ datasets.
+The following table shows the selected results for MaxCut on the generated NBIQ datasets.
 
 | Problem      | MCPG | | MCPG-U| | MCPG-P | | EMADM | |
 |--------------|-------------------------|-------------------------|-------|-------|-------|------|------|------|
@@ -92,8 +99,8 @@ $$\min\quad \frac{\sum_{(i,j)\in E}(1-x_ix_j)}{\sum_{i=1:n} (1 + x_i)} + \frac{\
 
 For solving the Cheeger cut problem using MCPG, run the following code
 ```python
-python mcpg.py config/rcheegercut_default.yaml data/graph/G14.txt
-python mcpg.py config/ncheegercut_default.yaml data/graph/G14.txt
+python src/mcpg.py config/rcheegercut_default.yaml data/graph/G14.txt
+python src/mcpg.py config/ncheegercut_default.yaml data/graph/G14.txt
 ```
 The following table shows the selected results for normal Cheeger cut on Gset dataset.
 Problem | MCPG| | MCPG-U | | MCPG-P | | pSC | |
@@ -118,7 +125,7 @@ $$\min_{x\in\mathbb{R}^{2N}}\quad\|Hx-y\|_2^2,\quad\mathrm{s.t.} \quad x\in \\{-
 
 For solving the MIMO problem using MCPG, run the following code
 ```python
-python mcpg.py config/mimo_default.yaml data/mimo/~.mat
+python src/mcpg.py config/mimo_default.yaml data/mimo/~.mat
 ```
 | Type   | LB        | MCPG                |       | HOTML               |       | MMSE                |       |
 |--------|-----------|---------------------|-------|---------------------|-------|---------------------|-------|
@@ -141,14 +148,14 @@ $c_j^i$ represents the sign of literal $j$ in clause $i$. $c_j^i = 1$ when $x_j$
 
 For solving the maxsat problem using MCPG, run the following code
 ```python
-python mcpg.py config/maxsat_default.yaml data/sat/randu_1.cnf
+python src/mcpg.py config/maxsat_default.yaml data/sat/randu_1.cnf
 ```
 For solving the partial maxsat problem using MCPG, run the following code
 ```python
-python mcpg.py config/pmaxsat_default.yaml data/sat/randu_1.cnf
+python src/mcpg.py config/pmaxsat_default.yaml data/sat/randu_1.cnf
 ```
 
-The following table shows the selected results for MaxSAT without hard clauses on generated difficult dataset.
+The following table shows the selected results for MaxSAT without hard clauses on the generated difficult dataset.
 |Problem | | | MCPG | WBO | WBO-inc | | SATLike | |
 |-|-|-|-|-|-|-|-|-|
 |nvar| nclause | UB | gap | time | gap | time | gap  | time| gap | time  | gap | time
