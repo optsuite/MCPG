@@ -34,7 +34,7 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
 ```
 
 ## Examples
-We first briefly introduce the problems we test in our paper, show how to use MCPG to solve the specific problems, and then presents the results individually for all the testing problems. The gap are defined as 
+We first briefly introduce the problems we test in our paper, show how to use MCPG to solve the specific problems, and then presents the partial results respectively for all the testing problems. The gap are defined as 
 $$\mathrm{gap} = \frac{\mathrm{obj}}{\mathrm{UB}} \times 100 \\%$$
 where $\mathrm{obj}$ is the objective value achieved by MCPG and other comparison algorithms, and $\mathrm{UB}$ denotes the best-known results.
 ### MaxCut
