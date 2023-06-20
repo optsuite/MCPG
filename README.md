@@ -58,7 +58,7 @@ The following table shows the selected results for MaxCut on Gset datasets regar
 | G55   | 5,000   | 12,468  | 10,296 | 10,294 | 9,960  | 10,116  | 10,138 | 10107  | 10208  |
 | G70   | 10,000  | 9,999   | 9595   | 9,541  | 9,456  | -       | 9,421  | 8513   | 9557   |
 
-The following table shows the detailed results for selected graph of Gset within limited time.
+The following table shows the detailed results for selected graphs of Gset within limited time.
 |Problem| | MCPG| | MCPG-U | | EO | | EMADM | |
 |-|-|-|-|-|-|-|-|-|-|
 |name| UB     | gap | time     | gap| time    | gap   | time | gap| time   
@@ -79,7 +79,7 @@ For solving QUBO problem using MCPG, run the following code
 ```python
 python src/mcpg.py config/qubo_default.yaml data/nbiq/nbiq_5000_1.npy
 ```
-The following table shows the selected results for MaxCut on the generated NBIQ datasets.
+The following table shows the selected results for QUBO on the generated NBIQ datasets.
 
 | Problem      | MCPG | | MCPG-U| | MCPG-P | | EMADM | |
 |--------------|-------------------------|-------------------------|-------|-------|-------|------|------|------|
@@ -148,7 +148,7 @@ where $w_i = 1$ for $c^i \in C_1$ and $w_i = |C_1| + 1$ for $c^i \in C_2$. $C_1$
 
 $c_j^i$ represents the sign of literal $j$ in clause $i$. $c_j^i = 1$ when $x_j$ appears in the clause $C_i$, $c_j^i = -1$ when $\neg x_j$ appears in the clause $C_i$ and  otherwise $c_j^i = 0$.
 
-For solving the maxsat problem using MCPG, run the following code
+For solving the MaxSAT problem using MCPG, run the following code
 ```python
 python src/mcpg.py config/maxsat_default.yaml data/sat/randu_1.cnf
 ```
