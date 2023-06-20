@@ -158,8 +158,8 @@ python src/mcpg.py config/pmaxsat_default.yaml data/sat/randu_1.cnf
 ```
 
 The following table shows the selected results for MaxSAT without hard clauses on the generated difficult dataset.
-|Problem | | | MCPG | WBO | WBO-inc | | SATLike | |
-|-|-|-|-|-|-|-|-|-|
+|Problem | | | MCPG || WBO | | WBO-inc | | SATLike | |
+|-|-|-|-|-|-|-|-|-|-|-|
 |nvar| nclause | UB | gap | time | gap | time | gap  | time| gap | time  | gap | time
 |2000 | 10000 | 8972  |  0.01 | 39  |  6.88  | 60       | 5.49 | 60| 0.12 | 60 
 |2000 | 10000 | 8945  |  0.01 | 39  |  6.47  | 60       | 5.62 | 60| 0.15 | 60 
@@ -167,7 +167,7 @@ The following table shows the selected results for MaxSAT without hard clauses o
 |2000 | 10000 | 8950  |  0.01 | 38  |  6.74  | 60       | 5.89 | 60| 0.13 | 60 
 |2000 | 10000 | 8937  |  0.01 | 39  |  6.22  | 60       | 5.99 | 60| 0.12 | 60 
 
-The following table shows the selected results for partial MaxSAT on MSE2016 random track.
+The following table shows the selected results for partial MaxSAT on MSE2016 random track. The time limits of WBO and WBO-inc are the same as SATlike.
 |Problem | | | | MCPG | | WBO| WBO-inc| SATLike | |
 |-|-|-|-|-|-|-|-|-|-|
 name | C_2 | C_1|  UB | gap  | time | gap | gap | gap | time  
