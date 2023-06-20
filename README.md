@@ -23,7 +23,7 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
 ```
     ├── Config         : Configuration files for various types of problems. 
     |                    See Examples for more details to use the configuration files.
-    ├── Data           : Problem instance selected for testing.
+    ├── Data           : Problem instances selected for testing.
     |                    See Summary of Datasets to access the complete datasets presented
     |                    in the paper.
     └── PyTorch
@@ -34,7 +34,7 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
 ```
 
 ## Examples
-We briefly introduce the problems we test in our paper, and presents the results individually for all the test problems. The gap are defined as 
+We first briefly introduce the problems we test in our paper, show how to use MCPG to solve the specific problems, and then presents the results individually for all the testing problems. The gap are defined as 
 $$\mathrm{gap} = \frac{\mathrm{obj}}{\mathrm{UB}} \times 100 \\%$$
 where $\mathrm{obj}$ is the objective value achieved by MCPG and other comparison algorithms, and $\mathrm{UB}$ denotes the best-known results.
 ### MaxCut
