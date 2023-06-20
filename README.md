@@ -47,7 +47,7 @@ For solving maxcut problem using MCPG, run the following code
 python src/mcpg.py config/maxcut_default.yaml data/graph/G14.txt
 ```
 
-The following table shows the selected results for MaxCut on Gset datasets regardless of time limits.
+The following table shows the selected results for MaxCut on Gset datasets regardless of time limits. For BLS, DSDP, RUN-CSP and PI-GNN, we directly use the results presented in the referenced papers since their performance is highly dependent on the implementation. 
 | Graph | Nodes   | Edges   | MCPG   | BLS    | DSDP   | RUN-CSP | PI-GNN | EO     | EMADM  |
 |-------|---------|---------|--------|--------|--------|---------|--------|--------|--------|
 | G14   | 800     | 4,694   | 3,064  | 3,064  | 2,922  | 2,943   | 3,026  | 3047   | 3045   |
