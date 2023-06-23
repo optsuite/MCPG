@@ -77,7 +77,7 @@ The sparsity of $Q$ in our experiments is greater than $0.5$, which fundamentall
 
 For solving QUBO problem using MCPG, run the following code
 ```python
-python src/mcpg.py config/qubo_default.yaml data/nbiq/nbiq_5000_1.npy
+python src/mcpg.py config/qubo_default.yaml data/nbiq/nbiq_500.npy
 ```
 The following table shows the results for QUBO on the large instances of Biq Mac Library.
 | Problem     || MCPG | | MCPG-U| | MCPG-P | | EMADM | |
@@ -142,7 +142,7 @@ $$\min_{x\in\mathbb{R}^{2N}}\quad\|Hx-y\|_2^2,\quad\mathrm{s.t.} \quad x\in \\{-
 
 For solving the MIMO problem using MCPG, run the following code
 ```python
-python src/mcpg.py config/mimo_default.yaml data/mimo/~.mat
+python src/mcpg.py config/mimo_default.yaml data/mimo/4QAM180_1.npz
 ```
 | Type   | LB        | MCPG                |       | HOTML               |       | MMSE                |       |
 |--------|-----------|---------------------|-------|---------------------|-------|---------------------|-------|
@@ -169,7 +169,7 @@ python src/mcpg.py config/maxsat_default.yaml data/sat/randu_1.cnf
 ```
 For solving the partial maxsat problem using MCPG, run the following code
 ```python
-python src/mcpg.py config/pmaxsat_default.yaml data/partial_sat/randu_1.wcnf
+python src/mcpg.py config/pmaxsat_default.yaml data/partial_sat/clq1-cv160c800l2g1.wcnf
 ```
 
 The following table shows the selected results for MaxSAT without hard clauses on the generated difficult dataset.
