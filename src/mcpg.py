@@ -1,5 +1,5 @@
 """
-Copyright (c) 2024 Cheng Chen, Ruitao Chen, Tianyou Li Zaiwen Wen
+Copyright (c) 2024 Cheng Chen, Ruitao Chen, Tianyou Li, Zaiwen Wen
 All rights reserved.
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that
 the following conditions are met:
