@@ -229,22 +229,21 @@ def mcpg_sampling_qubo(data, start_result, probs, num_ls, change_times, total_mc
     nvar = data['nvar']
     raw_samples = start_result.clone()
     # get probs
-    raw_samples = metro_sampling(
+    samples = metro_sampling(
         probs, raw_samples, change_times, device)
-    samples = raw_samples.t().clone()
     # local search
     for cnt in range(num_ls):
         for index in range(nvar):
             samples[index] = 0
-            res_indicator = samples * Q[index]
-            ind = (res_indicator.t()[index] > 0)
-            samples[:, index] = torch.where(ind, 1, -1)
-
+            res = torch.matmul(Q[index], samples)
+            ind = (res > 0)
+            samples[index] = 2 * ind - 1
     # compute value
-    res_sample = torch.matmul(torch.matmul(samples.t(), Q), samples)
+    res_sample = torch.matmul(Q, samples)
+    res_sample = torch.sum(torch.mul(samples, res_sample), dim = 0)
     res_sample_reshape = torch.reshape(res_sample, (-1, total_mcmc_num))
     index = torch.argmax(res_sample_reshape, dim=0)
     index = torch.tensor(list(range(total_mcmc_num)),
                          device=device) + index*total_mcmc_num
     max_res = res_sample[index]
-    return max_res, samples.t()[:, index], raw_samples, -(res_sample - torch.mean(res_sample.float())).to(device)
+    return max_res, samples[:, index], raw_samples, -(res_sample - torch.mean(res_sample.float())).to(device)

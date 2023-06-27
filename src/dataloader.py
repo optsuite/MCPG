@@ -283,6 +283,6 @@ def mimo_dataloader(path, device=torch.device('cuda' if torch.cuda.is_available(
 
 def qubo_dataloader(path, device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
     Q = np.load(path)
-    Q = torch.tensor(Q).to(device)
+    Q = torch.tensor(Q).float().to(device)
     data = {'Q': Q, 'nvar': Q.shape[0]}
     return data, Q.shape[0]
