@@ -4,7 +4,7 @@ from model import simple
 from dataloader import dataloader_select
 from sampling import sampler_select, sample_initializer
 
-def main(config, path):
+def mcpg_solver(config, path):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     dataloader = dataloader_select(config["problem_type"])
     sampler = sampler_select(config["problem_type"])
