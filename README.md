@@ -32,7 +32,23 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
         ├── dataloader.py: Data loader for MCPG to input the problem instance.
         └── sampling.py  : The sampling procedure combining with the local search algorithm in MCPG.
 ```
+## Requirements
+python 3.8, pytorch (>= 1.5.0), torch_scatter, torch_geometric, CUDA
+## Usage
+```
+usage: python mcpg.py [-h] config_file problem_instance
 
+positional arguments:
+  config_file       input the configuration file for the mcpg solver
+  problem_instance  input the data file for the problem instance
+```
+The following code demonstrates how to integrate the mcpg solver into your program
+```
+from mcpg_solver import mcpg_solver
+# loading the config file and problem_data file as shown in mcpg.py
+max_res, solution = mcpg_solver(config, problem_data)
+```
+Although the experiments we show in the paper are running with GPU, the program automatically detects the devices and can also running on CPU without assistance of GPU device.  
 ## Examples
 We first briefly introduce the problems tested in our paper, show how to use MCPG to solve the specific problems, and then present the partial results respectively for all the testing problems. The gap is defined as 
 $$\mathrm{gap} = \frac{|\mathrm{UB} - \mathrm{obj}|}{\mathrm{UB}} \times 100 \\%$$
