@@ -43,11 +43,15 @@ positional arguments:
   config_file       input the configuration file for the mcpg solver
   problem_instance  input the data file for the problem instance
 ```
-The following code demonstrates how to integrate the mcpg solver into your program
+The following codes demonstrate how to integrate the mcpg solver into your program
 ```
 from mcpg_solver import mcpg_solver
 # loading the config file and problem_data file as shown in mcpg.py
+config = ...
+problem_data = ...
+# use mcpg_solver to obtain the solution
 max_res, solution = mcpg_solver(config, problem_data)
+# use the solution in the rest of the program
 ```
 Although the experiments we show in the paper are running with GPU, the program automatically detects the devices and can also running on CPU without assistance of GPU device.  
 ## Examples
