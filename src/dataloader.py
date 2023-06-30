@@ -5,7 +5,7 @@ import numpy as np
 
 
 def dataloader_select(problem_type):
-    if problem_type == "maxcut":
+    if problem_type in ["maxcut", "r_cheegercut", "n_cheegercut"]:
         return maxcut_dataloader
     elif problem_type == "maxsat":
         return maxsat_dataloader
