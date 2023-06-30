@@ -46,7 +46,7 @@ positional arguments:
 The following codes demonstrate how to integrate the mcpg solver into your program
 ```
 from mcpg_solver import mcpg_solver
-# loading the config file and problem_data file as shown in mcpg.py
+# load the config file and problem_data file as shown in mcpg.py
 config = ...
 problem_data = ...
 # use mcpg_solver to obtain the solution
