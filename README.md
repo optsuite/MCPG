@@ -27,10 +27,11 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
     |                    See Summary of Datasets to access the complete datasets presented
     |                    in the paper.
     └── src
-        ├── mcpg.py      : Our MCPG solver. 
-        ├── model.py     : The probabilistic model to output the mean-field distribution.
-        ├── dataloader.py: Data loader for MCPG to input the problem instance.
-        └── sampling.py  : The sampling procedure combining with the local search algorithm in MCPG.
+        ├── mcpg.py          : Main file to run MCPG solver on specific problem data.
+        ├── mcpg_solver.py   : Our MCPG solver. 
+        ├── model.py         : The probabilistic model to output the mean-field distribution.
+        ├── dataloader.py    : Data loader for MCPG to input the problem instance.
+        └── sampling.py      : The sampling procedure combining with the local search algorithm in MCPG.
 ```
 ## Requirements
 python 3.8, pytorch (>= 1.5.0), torch_scatter, torch_geometric, CUDA
