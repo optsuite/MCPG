@@ -102,7 +102,7 @@ def mcpg_sampling_maxcut(data,
                 neighbor_edge_weight, graph_probs[neighbor_index])
             node_temp_v = torch.squeeze(node_temp_v)
             node_temp_v += torch.rand(node_temp_v.shape[0],
-                                      device=torch.device('cuda:0'))/4
+                                      device=torch.device(device))/4
             graph_probs[node] = (node_temp_v <
                                  data.weighted_degree[node]/2+0.125).int()
         if cnt >= num_ls:
