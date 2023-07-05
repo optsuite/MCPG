@@ -238,6 +238,7 @@ We hope that the package is useful for your application. If you have any bug rep
 - Zaiwen Wen, wenzw at pku.edu.cn
 
 ## Reference
-Cheng Chen, Ruitao Chen, Tianyou Li, Zaiwen Wen, Pengxiang Xu, A Monte Carlo Policy Gradient Method with Local Search for Binary Optimization, 2023.
+[Cheng Chen, Ruitao Chen, Tianyou Li, Zaiwen Wen, Pengxiang Xu, A Monte Carlo Policy Gradient Method with Local Search for Binary Optimization, arXiv:2307.00783, 2023.](https://arxiv.org/abs/2307.00783)
+
 ## License
 GNU General Public License v3.0
