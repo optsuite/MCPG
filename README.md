@@ -141,18 +141,7 @@ python src/mcpg.py config/rcheegercut_default.yaml data/graph/G14.txt
 python src/mcpg.py config/ncheegercut_default.yaml data/graph/G14.txt
 ```
 The following table shows the selected results for normal Cheeger cut on Gset dataset.
-Problem | MCPG| | MCPG-U | | MCPG-P | | pSC | |
-|-|-|-|-|-|-|-|-|-|
-Name    | NCC | time | NCC |time | NCC| time | NCC   | time     
-G22|0.280|43|0.283|39|0.284|41|0.375|136 
-G23|0.296|44|0.305|46|0.309|42|0.373|137 
-G24|0.366|41|0.368|40|0.375|44|0.449|132 
-G25|0.258|41|0.259|43|0.286|44|0.388|134 
-G26|0.272|42|0.281|42|0.284|40|0.416|134 
-G43|0.327|28|0.337|23|0.333|23|0.427|71 
-G44|0.308|28|0.312|27|0.353|26|0.421|67 
-G45|0.361|30|0.372|28|0.364|24|0.447|70 
-G46|0.297|25|0.311|25|0.337|27|0.378|68 
+
 ### MIMO
 The MIMO problem is to recover $x_C \in \mathcal Q$ from the linear model
 $$y_C = H_Cx_C+\nu_C,$$
