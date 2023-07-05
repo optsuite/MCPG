@@ -140,8 +140,24 @@ For solving the Cheeger cut problem using MCPG, run the following code
 python src/mcpg.py config/rcheegercut_default.yaml data/graph/G14.txt
 python src/mcpg.py config/ncheegercut_default.yaml data/graph/G14.txt
 ```
-The following table shows the selected results for normal Cheeger cut on Gset dataset.
-
+The following table shows the selected results for ratio Cheeger cut on Gset dataset.
+|Problem| MCPG | | MCPG-U |  | MCPG-P |  | pSC | |
+|-|-|-|-|-|-|-|-|-|
+|name|RCC|time|RCC|time|RCC|time|RCC|time
+G35   |  3.039  | 66 |  3.163  | 65  | 3.216  | 65  | 3.864 | 127  
+G36   |  2.894  | 67 |  2.982  | 65  |  3.004  | 68  | 3.794 | 131  
+G37   |  2.89   | 68 |  3.130  | 69  |  3.173  | 67  | 3.895 | 134  
+G38   |  2.861   | 67 |  2.897  | 69  |  2.927  | 68  | 3.544 | 125  
+G48   |  0.085   | 93 |  0.088  | 93  | 0.085  | 94  | 0.109 | 184  
+G49   |  0.158   | 96 |  0.159  | 96  |  0.168  | 94  | 0.188 | 145  
+G50   |  0.034| 93 |  0.033| 95  |  0.035  | 92  | 0.040 | 140  
+G51   |  2.908   | 33 |  2.960  | 34  |  3.137  | 31  | 3.997 | 52  
+G52   | 2.990   | 35 |  3.149  | 37  | 3.364  | 33  | 3.993 | 53  
+G53   | 2.846   | 33 | 2.896  | 31  |2.980  | 34  | 3.441 | 54  
+G54   |  2.918   | 34 | 3.018  | 32  |  3.016  | 35  | 3.548 | 57  
+G60   |  0.000   | 245 |  0.000 | 243  |  0.000 | 246  | 3.240 | 410  
+G63   |  3.164   | 242 | 3.358  | 244  |  3.481  | 241  | 4.090 | 373  
+G70   |  0.000   | 342 |  0.000 | 342  |  0.000 | 342  | 3.660 | 570  
 ### MIMO
 The MIMO problem is to recover $x_C \in \mathcal Q$ from the linear model
 $$y_C = H_Cx_C+\nu_C,$$
