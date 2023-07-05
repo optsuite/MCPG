@@ -1,9 +1,9 @@
-problem type: "maxcut"
+problem_type: "maxcut"
+lr_init: 0.25
+regular_init: 0
 sample_epoch_num: 8
+max_epoch_num: 160
+reset_epoch_num: 80
 total_mcmc_num: 50
 repeat_times: 60
-num_epochs: 20
 num_ls: 1
-learning_rate: 0.25
-regular: 0
-loss: "loss"

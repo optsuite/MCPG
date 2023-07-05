@@ -1,9 +1,9 @@
-problem type: "mimo"
+problem_type: "mimo"
+lr_init: 0.25
+regular_init: 0
 sample_epoch_num: 8
-total_mcmc_num: 120
-repeat_times: 130
-num_epochs: 3
-num_ls: 1
-learning_rate: 0.25
-regular: 0
-loss: "loss"
+max_epoch_num: 30
+reset_epoch_num: 80
+total_mcmc_num: 150
+repeat_times: 100
+num_ls: 4

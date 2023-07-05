@@ -1,9 +1,9 @@
-problem type: "maxsat"
+problem_type: "maxsat"
+lr_init: 0.1
+regular_init: 0
 sample_epoch_num: 8
+max_epoch_num: 80
+reset_epoch_num: 80
 total_mcmc_num: 400
 repeat_times: 120
-num_epochs: 50
-num_ls: 10
-learning_rate: 0.25
-regular: 0
-loss: "loss"
+num_ls: 5
