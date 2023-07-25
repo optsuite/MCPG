@@ -2,8 +2,8 @@ problem_type: "maxcut"
 lr_init: 0.25
 regular_init: 0
 sample_epoch_num: 8
-max_epoch_num: 160
-reset_epoch_num: 80
-total_mcmc_num: 50
-repeat_times: 60
-num_ls: 1
+max_epoch_num: 1600
+reset_epoch_num: 160
+total_mcmc_num: 130
+repeat_times: 120
+num_ls: 2

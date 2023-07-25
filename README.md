@@ -36,7 +36,14 @@ The pipeline of MCPG is demonstrated in the next figure. In each iteration, MCPG
                                algorithm in MCPG.
 ```
 ## Requirements
-python 3.8, pytorch (>= 1.5.0), torch_scatter, torch_geometric, CUDA
+The environment dependencies are exported in the form of "environment.yaml". For the most convenient installation of these environments, we highly recommend using conda.
+
+```
+conda env create -f environment.yaml
+```
+
+
+
 ## Quick Start
 Run the following code with the default configuration to solve the selected instances.
 ```
@@ -194,7 +201,7 @@ The following table shows the selected results for ratio Cheeger cut on Gset dat
 The MIMO problem is to recover $x_C \in \mathcal Q$ from the linear model
 $$y_C = H_Cx_C+\nu_C,$$
 where $y_C\in \mathbb C^M$ denotes the received signal, $H_C\in \mathbb C^{M\times N}$ is the channel, $x_C$ denotes the sending signal, and $\nu_C\in \mathbb C^N\sim \mathcal N(0,\sigma^2I_N)$ is the Gaussian noise with known variance. 
- 
+
 The problem can be reduced to a binary one and is equivalent to the following: 
 $$\min_{x\in\mathbb{R}^{2N}}\quad\|Hx-y\|_2^2,\quad\mathrm{s.t.} \quad x\in \\{-1, 1\\}^{2N}.$$
 

@@ -1,0 +1,59 @@
+"""
+Copyright (c) 2024 Cheng Chen, Ruitao Chen, Tianyou Li, Zaiwen Wen
+All rights reserved.
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions
+   and the following disclaimer in the documentation and/or other materials provided with the distribution.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+"""
+import torch
+import yaml
+import argparse
+import time
+
+from mcpg_solver import mcpg_solver
+from dataloader import dataloader_select
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+parser = argparse.ArgumentParser()
+parser.add_argument("config_file", type=str,
+                    help="input the configuration file for the mcpg solver")
+parser.add_argument("problem_instance", type=str,
+                    help="input the data file for the problem instance")
+
+args = parser.parse_args()
+with open(args.config_file) as f:
+    config = yaml.safe_load(f)
+
+path = args.problem_instance
+start_time = time.perf_counter()
+dataloader = dataloader_select(config["problem_type"])
+data, nvar = dataloader(path)
+dataloader_t = time.perf_counter()
+res, solutions, _, _ = mcpg_solver(nvar, config, data, verbose=True)
+mcpg_t = time.perf_counter()
+
+if config["problem_type"] == "maxsat":
+    if len(data.pdata) == 7:
+        if res > data.pdata[5] * data.pdata[6]:
+            res -= data.pdata[5] * data.pdata[6]
+        else: 
+            res = res//data.pdata[5]-data.pdata[6]
+
+if "obj_type" in config and config["obj_type"] == "neg":
+    print("OUTPUT: {:.2f}".format(-res))
+else:
+    print("OUTPUT: {:.2f}".format(res))
+
+
+print("DATA LOADING TIME: {:.2f}".format(dataloader_t - start_time))
+print("MCPG RUNNING TIME: {:.2f}".format(mcpg_t - dataloader_t))

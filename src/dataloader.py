@@ -1,16 +1,32 @@
+"""
+Copyright (c) 2024 Cheng Chen, Ruitao Chen, Tianyou Li, Zaiwen Wen
+All rights reserved.
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions
+   and the following disclaimer in the documentation and/or other materials provided with the distribution.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+"""
 import torch
 import os
 from torch_geometric.data import Data
 import numpy as np
+import scipy.io as scio
 
 
 def dataloader_select(problem_type):
-    if problem_type in ["maxcut", "r_cheegercut", "n_cheegercut"]:
+    if problem_type in ["maxcut", "maxcut_edge", "r_cheegercut", "n_cheegercut"]:
         return maxcut_dataloader
     elif problem_type == "maxsat":
         return maxsat_dataloader
-    elif problem_type == "mimo":
-        return mimo_dataloader
     elif problem_type == "qubo":
         return qubo_dataloader
     else:
@@ -252,13 +268,24 @@ def sort_node(ndata):
     return ndata
 
 
-def mimo_dataloader(path, device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
-    data = np.load(path)
-    H = data["H"]
-    X = data["X"]
-    v = data["v"]
-    SNR = data["SNR"]
-    K = data["K"]
+def qubo_dataloader(path, device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
+    Q = np.load(path)
+    Q = torch.tensor(Q).float().to(device)
+    data = {'Q': Q, 'nvar': Q.shape[0]}
+    return data, Q.shape[0]
+
+
+def read_data_mimo(K, N, SNR, X_num, r_seed, device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
+
+    path = "../data/mimo/4QAM{}_{}/4QAM{}H{}.mat".format(N, K, K, int(r_seed//X_num+1))
+    data = scio.loadmat(path)
+    H = data["save_H"]
+    path = "../data/mimo/4QAM{}_{}/4QAM{}X{}.mat".format(N, K, K, int(r_seed//X_num+1))
+    data = scio.loadmat(path)
+    X = data["save_X"][r_seed % X_num]
+    path = "../data/mimo/4QAM{}_{}/4QAM{}v{}.mat".format(N, K, K, int(r_seed//X_num+1))
+    data = scio.loadmat(path)
+    v = data["save_v"][r_seed % X_num]
     v = np.sqrt(2*K*10**(-SNR/10)) * v
 
     Y = H.dot(X) + v
@@ -278,11 +305,5 @@ def mimo_dataloader(path, device=torch.device('cuda' if torch.cuda.is_available(
     sca = torch.tensor(sca).to(device)
 
     data = [Sigma, Diag, X, sca, noise]
-    return data, 2 * K
+    return data
 
-
-def qubo_dataloader(path, device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
-    Q = np.load(path)
-    Q = torch.tensor(Q).float().to(device)
-    data = {'Q': Q, 'nvar': Q.shape[0]}
-    return data, Q.shape[0]
