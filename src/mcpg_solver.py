@@ -89,7 +89,12 @@ def mcpg_solver(nvar, config, data, verbose=False):
             # construct the start point for next iteration
             start_samples = start_samples_temp.t()
             if verbose:
-                if "obj_type" in config and config["obj_type"] == "neg":
+                if config["problem_type"] == "maxsat" and len(data.pdata) == 7:
+                    res = max(now_max_res).item()
+                    if res > data.pdata[5] * data.pdata[6]:
+                        res -= data.pdata[5] * data.pdata[6]
+                        print("o {:.3f}".format(res))
+                elif "obj_type" in config and config["obj_type"] == "neg":
                     print("o {:.3f}".format((-max(now_max_res).item())))
                 else:
                     print("o {:.3f}".format((max(now_max_res).item())))

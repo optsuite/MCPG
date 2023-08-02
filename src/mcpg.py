@@ -42,14 +42,17 @@ dataloader_t = time.perf_counter()
 res, solutions, _, _ = mcpg_solver(nvar, config, data, verbose=True)
 mcpg_t = time.perf_counter()
 
-if config["problem_type"] == "maxsat":
-    if len(data.pdata) == 7:
-        if res > data.pdata[5] * data.pdata[6]:
-            res -= data.pdata[5] * data.pdata[6]
-        else: 
-            res = res//data.pdata[5]-data.pdata[6]
-
-if "obj_type" in config and config["obj_type"] == "neg":
+if config["problem_type"] == "maxsat" and len(data.pdata) == 7:
+    if res > data.pdata[5] * data.pdata[6]:
+        res -= data.pdata[5] * data.pdata[6]
+        print("SATISFIED")
+        print("SATISFIED SOFT CLAUSES:", res)
+        print("UNSATISFIED SOFT CLAUSES:", data.pdata[1] - data.pdata[-1] - res)
+    else: 
+        res = res//data.pdata[5]-data.pdata[6]
+        print("UNSATISFIED")
+        
+elif "obj_type" in config and config["obj_type"] == "neg":
     print("OUTPUT: {:.2f}".format(-res))
 else:
     print("OUTPUT: {:.2f}".format(res))
