@@ -27,7 +27,7 @@ class simple(torch.nn.Module):
         self.lin.reset_parameters()
 
     def forward(self, alpha = 0.1, start_samples=None, value=None, 
-                device=torch.device("cuda")):
+                device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
         x = torch.ones(1).to(device)
         x = self.lin(x)
         x = self.sigmoid(x)
