@@ -27,7 +27,7 @@ def dataloader_select(problem_type):
         return maxcut_dataloader
     elif problem_type == "maxsat":
         return maxsat_dataloader
-    elif problem_type == "qubo":
+    elif problem_type in ["qubo", "qubo_bin"]:
         return qubo_dataloader
     else:
         raise (Exception("Unrecognized problem type {}".format(problem_type)))
