@@ -420,7 +420,7 @@ def mcpg_sampling_qubo_bin(data, start_result, probs, num_ls, change_times, tota
     for cnt in range(num_ls):
         for index in range(nvar):
             samples[index] = 0
-            res = 2 * torch.matmul(Q[index], samples) + Q[index][index]
+            res = torch.matmul(Q[index], samples) + Q[index][index]/2
             ind = (res > 0)
             samples[index] = ind
     # compute value
