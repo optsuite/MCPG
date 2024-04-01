@@ -1,20 +1,3 @@
-"""
-Copyright (c) 2024 Cheng Chen, Ruitao Chen, Tianyou Li, Zaiwen Wen
-All rights reserved.
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that
-the following conditions are met:
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the
-   following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions
-   and the following disclaimer in the documentation and/or other materials provided with the distribution.
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
-WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
-PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-"""
 import torch
 from torch_scatter import scatter
 from torch.distributions.bernoulli import Bernoulli
@@ -46,6 +29,8 @@ def sampler_select(problem_type):
         return mcpg_sampling_mimo
     elif problem_type == "qubo":
         return mcpg_sampling_qubo
+    elif problem_type == "qubo_bin":
+        return mcpg_sampling_qubo_bin
     elif problem_type == "r_cheegercut":
         return mcpg_sampling_rcheegercut
     elif problem_type == "n_cheegercut":
@@ -421,4 +406,29 @@ def mcpg_sampling_qubo(data, start_result, probs, num_ls, change_times, total_mc
                          device=device) + index*total_mcmc_num
     max_res = res_sample[index]
     samples = (samples + 1) / 2
+    return max_res, samples[:, index], raw_samples, -(res_sample - torch.mean(res_sample.float())).to(device)
+def mcpg_sampling_qubo_bin(data, start_result, probs, num_ls, change_times, total_mcmc_num,
+                       device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
+    Q = data['Q']
+    nvar = data['nvar']
+    raw_samples = start_result.clone()
+    # get probs
+    raw_samples = metro_sampling(
+        probs, raw_samples, change_times, device)
+    samples = raw_samples.clone()
+    # local search
+    for cnt in range(num_ls):
+        for index in range(nvar):
+            samples[index] = 0
+            res = 2 * torch.matmul(Q[index], samples) + Q[index][index]
+            ind = (res > 0)
+            samples[index] = ind
+    # compute value
+    res_sample = torch.matmul(Q, samples)
+    res_sample = torch.sum(torch.mul(samples, res_sample), dim=0)
+    res_sample_reshape = torch.reshape(res_sample, (-1, total_mcmc_num))
+    index = torch.argmax(res_sample_reshape, dim=0)
+    index = torch.tensor(list(range(total_mcmc_num)),
+                         device=device) + index*total_mcmc_num
+    max_res = res_sample[index]
     return max_res, samples[:, index], raw_samples, -(res_sample - torch.mean(res_sample.float())).to(device)
