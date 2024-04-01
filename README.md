@@ -49,8 +49,10 @@ Run the following code with the default configuration to solve the selected inst
 ```
 # maxcut
 python src/mcpg.py config/maxcut_default.yaml data/graph/G14.txt
-# qubo
+# qubo on {-1,1}^n
 python src/mcpg.py config/qubo_default.yaml data/nbiq/nbiq_500.npy
+# qubo on {0,1}^n
+python src/mcpg.py config/qubo_bin_default.yaml data/nbiq/nbiq_500.npy
 # ratio Cheeger cut
 python src/mcpg.py config/rcheegercut_default.yaml data/graph/G35.txt
 # normal Cheeger cut
