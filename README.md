@@ -1,7 +1,7 @@
 ## MCPG 
 
 **MCPG** is an efficient and stable framework for solving Binary Optimization problems based on a **M**onte **C**arlo **P**olicy **G**radient Method with Local Search:  
-\[\min_x \quad f(x), \quad\mathrm{s.t.}\quad x_i \in \\{1,-1\\}.\]
+$$\min_x \quad f(x), \quad\mathrm{s.t.}\quad x_i \in \\{1,-1\\}.$$
 
 ## Algorithm
 MCPG  consists of the following main components:
